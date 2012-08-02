@@ -1,5 +1,5 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class TextQuery < AbstractQuery

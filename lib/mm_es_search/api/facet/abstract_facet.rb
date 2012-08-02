@@ -1,16 +1,16 @@
 module MmEsSearch
-  module API
+  module Api
     module Facet
 
       class AbstractFacet
         
         include MongoMapper::EmbeddedDocument
-        include MmEsSearch::API::Query
+        include MmEsSearch::Api::Query
         plugin MmUsesNoId
         
         key :label, String
         key :nested, String
-        one :facet_filter, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        one :facet_filter, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         
         def to_es_query
           facet_params = {}

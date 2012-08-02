@@ -1,10 +1,10 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class SingleBoolFilter < AbstractQuery
         
-        many :filters, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        many :filters, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key  :_cache, Boolean
       
         def operator_name

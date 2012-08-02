@@ -1,10 +1,10 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class CustomScoreQuery < AbstractQuery
       
-        one :query, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        one :query, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key :script, String
       
         def to_mongo_query(options = {})

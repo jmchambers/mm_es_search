@@ -1,11 +1,11 @@
 module MmEsSearch
-  module API
+  module Api
     module Facet
       
       class RangeFacet < AbstractFacet
         
         key  :field, String
-        many :ranges, :class_name => 'MmEsSearch::API::Facet::RangeItem'
+        many :ranges, :class_name => 'MmEsSearch::Api::Facet::RangeItem'
         key  :key_field, String
         key  :value_field, String
         key  :key_script, String

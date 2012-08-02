@@ -1,15 +1,21 @@
-class AbstractQueryModel
-  
-  include MmEsSearch::API::Query
-  include MongoMapper::EmbeddedDocument
-  plugin  MmUsesNoId
-  
-  def to_query
-    
-  end
+module MmEsSearch
+  module Models
 
-  def to_filter
+    class AbstractQueryModel
+      
+      include MmEsSearch::Api::Query
+      include MongoMapper::EmbeddedDocument
+      plugin  MmUsesNoId
+      
+      def to_query
+        
+      end
     
-  end
-    
+      def to_filter
+        
+      end
+        
+    end
+
+  end 
 end

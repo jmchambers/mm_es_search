@@ -1,11 +1,11 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class FilteredQuery < AbstractQuery
         
-        one :query, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
-        one :filter, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        one :query, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
+        one :filter, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         
         def to_mongo_query(options = {})
           if query.is_a?(MatchAllQuery) or query.nil?

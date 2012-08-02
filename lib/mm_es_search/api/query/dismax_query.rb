@@ -1,10 +1,10 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class DismaxQuery < AbstractQuery
       
-        many :queries, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        many :queries, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key :tie_breaker, Float
         key :boost, Float
 

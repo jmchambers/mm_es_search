@@ -1,5 +1,5 @@
 module MmEsSearch
-  module API
+  module Api
     module Sort
 
       class RootSort

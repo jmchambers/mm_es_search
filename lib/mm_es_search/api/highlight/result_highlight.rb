@@ -1,5 +1,5 @@
 module MmEsSearch
-  module API
+  module Api
     module Highlight
 
       class ResultHighlight
@@ -7,7 +7,7 @@ module MmEsSearch
         include MongoMapper::EmbeddedDocument
         plugin MmUsesNoId
         
-        many :fields, :class_name => 'MmEsSearch::API::Highlight::ResultHighlight'
+        many :fields, :class_name => 'MmEsSearch::Api::Highlight::ResultHighlight'
         key :field, String
         key :tag_schema, String
         key :pre_tags, Array

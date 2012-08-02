@@ -1,10 +1,10 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class NestedQuery < AbstractQuery
       
-        one :query, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        one :query, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key :path, String
         key :score_mode, String
         key :_scope, String

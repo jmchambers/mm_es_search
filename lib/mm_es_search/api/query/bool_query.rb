@@ -1,12 +1,12 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
       
       class BoolQuery < AbstractQuery
         
-        many :musts, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
-        many :shoulds, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
-        many :must_nots, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        many :musts, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
+        many :shoulds, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
+        many :must_nots, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key :boost, Float
         key :minimum_number_should_match, Integer
         

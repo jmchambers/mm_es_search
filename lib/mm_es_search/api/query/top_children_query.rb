@@ -1,10 +1,10 @@
 module MmEsSearch
-  module API
+  module Api
     module Query
             
       class TopChildrenQuery < AbstractQuery
       
-        one :query, :class_name => 'MmEsSearch::API::Query::AbstractQuery'
+        one :query, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key :type,                String
         key :score,               String
         key :_scope,              String
