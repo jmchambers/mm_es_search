@@ -2,7 +2,9 @@ module MmEsSearch
   module Api
     module Query
       
-      class BoolFilter < BoolQuery; end
+      class BoolFilter < BoolQuery
+        plugin AbstractFilter  
+      end
       
     end
   end

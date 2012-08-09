@@ -4,6 +4,8 @@ module MmEsSearch
       
       class SingleBoolFilter < AbstractQuery
         
+        plugin AbstractFilter
+        
         many :filters, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key  :_cache, Boolean
       

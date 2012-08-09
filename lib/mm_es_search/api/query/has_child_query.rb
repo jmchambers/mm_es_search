@@ -2,7 +2,10 @@ module MmEsSearch
   module Api
     module Query
       
-      class HasChildQuery; end
+      class HasChildQuery < AbstractQuery
+        
+        
+      end
       
     end
   end

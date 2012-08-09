@@ -14,8 +14,8 @@ module MmEsSearch
         
         def to_es_query
           facet_params = {}
-          facet_params.merge!({:nested => nested}) if nested?
-          facet_params.merge!({:facet_filter => facet_filter.to_es_query}) if facet_filter?
+          facet_params.merge!(:nested => nested) if nested?
+          facet_params.merge!(:facet_filter => facet_filter.to_es_query) if facet_filter?
           return facet_params
         end
         

@@ -2,7 +2,7 @@ module MmEsSearch
   module Api
     module Query
       
-      class TermFilter < TermQuery
+      class MatchAllFilter < MatchAllQuery
         plugin AbstractFilter  
       end
       

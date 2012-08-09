@@ -5,7 +5,11 @@ module MmEsSearch
       class AbstractQuery
         
         include MongoMapper::EmbeddedDocument
-        plugin MmUsesNoId
+        plugin  MmUsesNoId
+        
+        def to_filter
+          QueryFilter.new(query: self)
+        end
         
         def es_abs_field
           if path?

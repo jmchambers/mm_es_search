@@ -2,7 +2,9 @@ module MmEsSearch
   module Api
     module Query
       
-      class HasChildFilter < HasChildQuery; end
+      class HasChildFilter < HasChildQuery
+        plugin AbstractFilter  
+      end
       
     end
   end

@@ -2,7 +2,9 @@ module MmEsSearch
   module Api
     module Query
       
-      class PrefixFilter < PrefixQuery; end
+      class PrefixFilter < PrefixQuery
+        plugin AbstractFilter  
+      end
       
     end
   end

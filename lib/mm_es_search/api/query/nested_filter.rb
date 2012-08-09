@@ -3,7 +3,8 @@ module MmEsSearch
     module Query
       
       class NestedFilter < NestedQuery
-        
+
+        plugin AbstractFilter  
         private
         
         def es_api_keyword

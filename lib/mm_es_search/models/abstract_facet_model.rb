@@ -6,13 +6,13 @@ module MmEsSearch
       include MmEsSearch::Api::Facet
       include MmEsSearch::Api::Query
       include MongoMapper::EmbeddedDocument
-      #plugin MmUsesNoId
+      plugin  MmUsesNoId
       
       key :show_missing, Boolean
       key :rows, Array
       
-      def label
-        self._id.to_s
+      def prefix_label(label)
+        "#{self.object_id}_#{label}"
       end
       
       def used?

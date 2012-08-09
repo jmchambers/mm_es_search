@@ -5,6 +5,9 @@ module MmEsSearch
       extend ActiveSupport::Concern
       
       included do
+        
+        DEFAULT_NUM_RESULTS ||= 10
+        
         # redefinition to include default
         many :rows, :class_name => 'MmEsSearch::Api::Facet::TermsFacetRow'
         key  :exclude, Array
@@ -51,7 +54,8 @@ module MmEsSearch
         def to_facet
           TermsFacet.new(
             default_params.merge(
-              :size => 10 + checked_rows.length,
+              :label   => prefix_label('display_results'),
+              :size    => (@num_result_rows || self.class::DEFAULT_NUM_RESULTS) + checked_rows.length,
               :exclude => exclude
             )
           )

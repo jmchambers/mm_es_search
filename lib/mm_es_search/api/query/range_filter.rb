@@ -2,7 +2,9 @@ module MmEsSearch
   module Api
     module Query
       
-      class RangeFilter < RangeQuery; end
+      class RangeFilter < RangeQuery
+        plugin AbstractFilter  
+      end
       
     end
   end
