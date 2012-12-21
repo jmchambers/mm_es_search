@@ -2,9 +2,9 @@ module MmEsSearch
   module Api
     module Query
       
-      class HasChildQuery < AbstractQuery
+      class HasParentQuery < AbstractQuery
         
-        key :type, Symbol
+        key :parent_type, Symbol
         one :query, :class_name => 'MmEsSearch::Api::Query::AbstractQuery'
         key :scope, String
         
@@ -13,9 +13,9 @@ module MmEsSearch
         end
         
         def to_es_query
-          params = {:type => type, :query => query.to_es_query}
+          params = {:parent_type => parent_type, :query => query.to_es_query}
           params[:_scope] = scope if scope?
-          {:has_child => params}
+          {:has_parent => params}
         end
         
       end

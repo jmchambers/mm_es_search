@@ -5,6 +5,8 @@ module MmEsSearch
       class TextQuery < AbstractQuery
         
         key :field, String
+        key :path,  String
+        
         key :query, String
         key :operator, String
         key :analyzer, String
@@ -16,12 +18,7 @@ module MmEsSearch
         key :type, String#, :default => "phrase_prefix"
         key :slop, Integer
         key :boost, Float
-        
-        
-        def print_foo
-          puts 'foo'
-        end
-        
+                
         def to_mongo_query(options = {})
           
           raise "TextQuery doesn't support mongo execution"
@@ -30,7 +27,11 @@ module MmEsSearch
         
         def to_es_query
   
-          return {:text => {field => self.attributes.except("_type", "field")}}
+          params = self.attributes.except("_type", "field", "path")
+          field  = self.field
+          field  = "#{path}.#{field}" if path
+          
+          return {:text => {field => params}}
 
         end
         

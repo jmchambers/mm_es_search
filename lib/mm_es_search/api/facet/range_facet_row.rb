@@ -6,7 +6,7 @@ module MmEsSearch
         
         include MongoMapper::EmbeddedDocument
         include ActionView::Helpers::NumberHelper
-        plugin MmUsesNoId
+        plugin  MmUsesUuid
         
         key  :from
         key  :to
@@ -19,12 +19,34 @@ module MmEsSearch
         
         key :checked, String
         
+        def from=(val)
+          super.tap do
+            binding.pry if from.is_a?(DateTime)
+          end
+        end
+        
+        def attributes(*args)
+          attr = super
+          attr.each_with_object({}) do |(key, value), hsh|
+            hsh[key] = case value
+            when ActiveSupport::TimeWithZone
+              value.utc.to_time
+            else
+              value
+            end
+          end
+        end
+        alias :to_mongo :attributes
+        
         def zero_count
           self.count = 0
         end
         
         def to_range_item
-          RangeItem.new(:from => from, :to => to)
+          RangeItem.new(
+            :from => from,
+            :to   => to
+          )
         end
         
         def to_english(pretty_print = true)
@@ -62,6 +84,10 @@ module MmEsSearch
           params << "from:#{from}" if from?
           params << "to:#{to}" if to?
           return params.join('&')
+        end
+        
+        def parent
+          _parent_document
         end
         
       end

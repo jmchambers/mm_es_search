@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = MmEsSearch::VERSION
   s.authors     = ["Jonathan Chambers"]
   s.email       = ["j.chambers@gmx.net"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/jmchambers/mm_es_search"
+  s.summary     = %q{Tools to build a mongomapper model that stores and executes complex elasticsearch queries.}
+  s.description = %q{Provides modules that can form the basis of a mongomapper class implementing a search model.}
 
   s.rubyforge_project = "mm_es_search"
 

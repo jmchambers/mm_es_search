@@ -50,7 +50,7 @@ module MmEsSearch
             if filter_array.length == 1
               return {operator_name => {:filter => filter_array.first}}
             else
-              return {operator_name => {:filter => {:and => filter_array}}}
+              return {operator_name => {:filter => {:or => filter_array}}}
             end
           else
             params = {operator_name => filter_array}

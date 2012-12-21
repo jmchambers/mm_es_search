@@ -10,6 +10,8 @@ module MmEsSearch
         key :terms, Array
         key :boost, Float
         
+        key :execution, Symbol
+        
         key :minimum_match, Integer
         
         def get_object_value(obj,path,field)
@@ -45,6 +47,7 @@ module MmEsSearch
           terms_params = {es_abs_field => terms}
           terms_params.merge!(:boost => boost) if boost?
           terms_params.merge!(:minimum_match => minimum_match) if minimum_match?
+          terms_params.merge!(:execution => execution) if execution?
           return {:terms => terms_params}
         end
         

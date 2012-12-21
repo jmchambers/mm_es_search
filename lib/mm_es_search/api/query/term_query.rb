@@ -7,7 +7,7 @@ module MmEsSearch
         key :field, String
         key :path, String
         
-        key :value, String
+        key :value #string or number
         key :boost, Float
         
         def to_mongo_query(options = {})

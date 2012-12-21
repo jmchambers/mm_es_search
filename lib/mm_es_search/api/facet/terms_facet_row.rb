@@ -5,7 +5,7 @@ module MmEsSearch
       class TermsFacetRow
         
         include MongoMapper::EmbeddedDocument
-        plugin MmUsesNoId
+        plugin  MmUsesUuid
         
         key :term, String
         key :count, Integer
@@ -22,6 +22,10 @@ module MmEsSearch
         
         def to_form_name(data_type)
           term
+        end
+        
+        def parent
+          _parent_document
         end
         
       end

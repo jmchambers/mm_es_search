@@ -28,6 +28,7 @@ module MmEsSearch
   end
   
   smart_load "mm_es_search/utils/search_logger"
+  smart_load "mm_es_search/utils/facet_row_utils"
   
   smart_load "mm_es_search/api/query/abstract_query"
   smart_load "mm_es_search/api/query/bool_query"
@@ -37,6 +38,7 @@ module MmEsSearch
   smart_load "mm_es_search/api/query/dismax_query"
   smart_load "mm_es_search/api/query/filtered_query"
   smart_load "mm_es_search/api/query/has_child_query"
+  smart_load "mm_es_search/api/query/has_parent_query"
   smart_load "mm_es_search/api/query/match_all_query"
   smart_load "mm_es_search/api/query/nested_query"
   smart_load "mm_es_search/api/query/prefix_query"
@@ -47,11 +49,13 @@ module MmEsSearch
   smart_load "mm_es_search/api/query/text_query"
   smart_load "mm_es_search/api/query/top_children_query"
   
+  smart_load "mm_es_search/api/query/abstract_filter"
   smart_load "mm_es_search/api/query/single_bool_filter"
   
   smart_load "mm_es_search/api/query/and_filter"
   smart_load "mm_es_search/api/query/bool_filter"
   smart_load "mm_es_search/api/query/has_child_filter"
+  smart_load "mm_es_search/api/query/has_parent_filter"
   smart_load "mm_es_search/api/query/match_all_filter"
   smart_load "mm_es_search/api/query/nested_filter"
   smart_load "mm_es_search/api/query/not_filter"

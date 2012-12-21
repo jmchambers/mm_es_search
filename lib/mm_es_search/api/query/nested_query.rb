@@ -14,7 +14,8 @@ module MmEsSearch
           
           mod_path, array_index = path_and_index
           if array_index.nil?
-            {path => {'$elemMatch' => query.to_mongo_query(options)}}
+            #NOTE: we assume here that earlier terms in a dot-joined path has been used in an enclosing nested query
+            {path.split('.').last => {'$elemMatch' => query.to_mongo_query(options)}}
           else
             query.to_mongo_query(options) #don't need elemMatch as index means we're addressing one document only
           end
