@@ -6,7 +6,7 @@ module MmEsSearch
       
       included do
         
-        DEFAULT_NUM_RESULTS ||= 10
+        DEFAULT_NUM_RESULTS ||= 25
         
         # redefinition to include default
         many :rows, :class_name => 'MmEsSearch::Api::Facet::TermsFacetRow'

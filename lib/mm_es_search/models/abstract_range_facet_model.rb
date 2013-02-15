@@ -128,7 +128,15 @@ module MmEsSearch
       end
       
       def best_time_unit
-        diff = Time.diff(stats.min, stats.max)
+        if rows.present?
+          all_times = rows.map { |r| [r.from, r.to] }.flatten.compact
+          min = all_times.min
+          max = all_times.max
+        else
+          min = stats.min
+          max = stats.max
+        end
+        diff = Time.diff(min, max)
         if    diff[:year].abs   > 0 then :year
         elsif diff[:month].abs  > 0 then :month
         elsif diff[:day].abs    > 0 then :day
@@ -307,7 +315,8 @@ module MmEsSearch
         end
         
         values.map!(&final_casting)
-        if scale
+        puts "SCALE SCALE SCALE is #{scale}"
+        if scale and not scale.zero?
           values.map! { |v| v/scale }
         end
         

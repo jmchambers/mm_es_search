@@ -73,6 +73,7 @@ module MmEsSearch
             self.facet_status = :pending
           elsif all_facets_finished?
             self.facet_status = :complete
+            puts "MARKING FACETS AS COMPLETE AFTER FIRST RUN"
           end
           
 # #NOTE HACK while investigating search
@@ -333,6 +334,10 @@ module MmEsSearch
         
         self.last_run_at  = Time.now.utc
         
+        if self.class::MIN_FACET_COVERAGE_COUNT and result_total < self.class::MIN_FACET_COVERAGE_COUNT
+          @auto_explore_needed = false
+        end
+        
       end
       
       def route_facet_query_results
@@ -354,6 +359,10 @@ module MmEsSearch
         end
 
         
+      end
+      
+      def prune
+        puts "PRUNE WAS CALLED IN A #{self.class.name}"
       end
       
       def have_pending_facets?
