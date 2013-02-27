@@ -186,7 +186,7 @@ module MmEsSearch
           when "count"
             es_value
             
-          end.tap { |out| binding.pry if out.is_a?(Time) and out.year == 1819 } 
+          end
           
 
         else

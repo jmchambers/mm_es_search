@@ -19,12 +19,6 @@ module MmEsSearch
         
         key :checked, String
         
-        def from=(val)
-          super.tap do
-            binding.pry if from.is_a?(DateTime)
-          end
-        end
-        
         def attributes(*args)
           attr = super
           attr.each_with_object({}) do |(key, value), hsh|
