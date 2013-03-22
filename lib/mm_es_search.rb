@@ -54,6 +54,7 @@ module MmEsSearch
   
   smart_load "mm_es_search/api/query/and_filter"
   smart_load "mm_es_search/api/query/bool_filter"
+  smart_load "mm_es_search/api/query/geo_distance_range_filter"
   smart_load "mm_es_search/api/query/has_child_filter"
   smart_load "mm_es_search/api/query/has_parent_filter"
   smart_load "mm_es_search/api/query/match_all_filter"

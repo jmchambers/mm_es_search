@@ -36,7 +36,7 @@ module MmEsSearch
           transitions :to => :need_row_data, :from => [:need_field_stats, :need_row_data]
         end
         
-        aasm_event :prepare_for_new_data, :after => :prune_unchecked_rows do
+        aasm_event :prepare_for_new_data, :after => :reinitialize do
           transitions :to => :need_field_stats, :from => [:ready_for_display, :need_field_stats, :need_row_data]
         end
         
@@ -52,11 +52,20 @@ module MmEsSearch
     
       end
       
+      def reinitialize
+        prune_unchecked_rows
+        field_stats_set if is_distance?
+      end
+      
       def result_name
         'ranges'
       end
       
       def is_time?
+        false
+      end
+      
+      def is_distance?
         false
       end
       
@@ -89,17 +98,42 @@ module MmEsSearch
         # nil
       # end
   
+      def es_facet_class
+        if is_distance?
+          GeoDistanceFacet
+        else
+          RangeFacet
+        end
+      end
+      
+      def es_filter_class
+        if is_distance?
+          GeoDistanceRangeFilter
+        else
+          RangeFilter
+        end
+      end
+      
+      def distance_center
+        "gcpvj32dx" #London, UK
+      end
+  
       def to_facet
         case display_mode || select_display_mode
         when "range"
           initialize_rows
-          RangeFacet.new(
+          f = es_facet_class.new(
             default_params.merge(
               :label        => prefix_label('display_result'),
               :ranges       => rows.map(&:to_range_item),
               :facet_filter => facet_filter
             )
           )
+          if is_distance?
+            f.center = distance_center
+            f.unit   = distance_unit
+          end
+          f
         when "histogram"
           raise NotImplementedError
         else
@@ -122,6 +156,8 @@ module MmEsSearch
         @transform_lookup = {}
         if is_time?
           initialize_time_rows
+        elsif is_distance?
+          initialize_distance_rows
         else
           initialize_numeric_rows
         end
@@ -329,6 +365,15 @@ module MmEsSearch
       
       def initialize_numeric_rows
         values = calculate_range_values(stats.min, stats.max, stats.mean, stats.std_deviation)
+        build_rows(values)
+      end
+      
+      def distance_unit
+        @distance_unit ||= "km"
+      end
+      
+      def initialize_distance_rows
+        values = [0, 1, 5, 10, 50, 100]
         build_rows(values)
       end
       
